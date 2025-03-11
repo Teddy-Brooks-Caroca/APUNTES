@@ -972,3 +972,243 @@ WHERE id = ALL (
 | `NOT IN`     | El valor **NO** está en la lista. (¡Cuidado con `NULL`!) |
 | `ANY`        | Al menos un valor cumple la condición.                   |
 | `ALL`        | **Todos** los valores cumplen la condición.              |
+
+## TRANSACCIONES EN SQL SERVER
+
+## Introducción
+
+En SQL Server, una **transacción** es una secuencia de operaciones que se ejecutan como una unidad indivisible. Se utiliza para asegurar la integridad de los datos y garantizar que todas las operaciones dentro de la transacción se completen correctamente. Si ocurre algún error, los cambios pueden deshacerse mediante un **ROLLBACK**, o si todo es exitoso, se pueden confirmar con un **COMMIT**.
+
+## Sintaxis General
+
+```sql
+BEGIN TRANSACTION;
+-- Operaciones SQL
+COMMIT; -- Confirma la transacción
+-- o
+ROLLBACK; -- Revierte la transacción
+```
+
+## Distinción entre COMMIT y ROLLBACK
+
+| Comando      | Descripción                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| **COMMIT**   | Confirma los cambios realizados en la transacción, haciendo que sean permanentes en la base de datos.                     |
+| **ROLLBACK** | Revierte todos los cambios realizados desde el inicio de la transacción, devolviendo la base de datos a su estado previo. |
+
+---
+
+### Usos de las Transacciones en SQL Server
+
+#### 1. Uso en Operaciones DML (INSERT, UPDATE, DELETE)
+
+Las transacciones son especialmente útiles al modificar datos para evitar inconsistencias.
+
+#### Ejemplo:
+
+```sql
+BEGIN TRANSACTION;
+DELETE FROM Productos WHERE Stock = 0;
+-- Si algo sale mal
+ROLLBACK;
+-- Si todo está correcto
+COMMIT;
+```
+
+#### 2. Uso en la Ejecución de Operaciones en Tablas Relacionadas
+
+Al modificar datos en múltiples tablas, se debe garantizar que todas las modificaciones se realicen o ninguna de ellas.
+
+#### Ejemplo:
+
+```sql
+BEGIN TRANSACTION;
+UPDATE Productos SET Precio = Precio * 1.1 WHERE Categoria = 'Electrónica';
+INSERT INTO Auditoria (Accion, Fecha) VALUES ('Aumento de precios', GETDATE());
+-- Si todo es correcto
+COMMIT;
+-- Si ocurre un error
+ROLLBACK;
+```
+
+#### 3. Uso con Variables
+
+Las transacciones también pueden depender de valores calculados dentro de la consulta.
+
+#### Ejemplo:
+
+```sql
+BEGIN TRANSACTION;
+DECLARE @PromedioPrecio DECIMAL(10,2);
+SELECT @PromedioPrecio = AVG(Precio) FROM Productos;
+UPDATE Productos SET Precio = Precio * 1.15;
+IF (SELECT MIN(Precio) FROM Productos) < @PromedioPrecio
+    ROLLBACK;
+ELSE
+    COMMIT;
+```
+
+
+### Consideraciones
+
+- Las transacciones ayudan a mantener la consistencia y confiabilidad de los datos.
+- Un **COMMIT** hace que los cambios sean permanentes, mientras que un **ROLLBACK** los revierte.
+- Se recomienda utilizar **SAVEPOINT** en transacciones largas para poder hacer un rollback parcial.
+
+#### Uso de SAVEPOINT:
+
+```sql
+BEGIN TRANSACTION;
+SAVE TRAN Punto1;
+UPDATE Productos SET Precio = Precio * 1.05;
+-- Si se necesita revertir solo hasta este punto
+ROLLBACK TRAN Punto1;
+COMMIT;
+```
+
+## MANEJO DE ERRORES EN SQL SERVER
+
+### **1. Introducción**
+
+El manejo de errores en SQL Server es una práctica fundamental para garantizar que los procedimientos almacenados, consultas y transacciones se ejecuten correctamente y permitan la recuperación ante posibles fallos.
+
+SQL Server ofrece diversas herramientas para capturar y manejar errores, tales como:
+
+- Variables de sistema (`@@ERROR`)
+- Bloques `TRY...CATCH`
+- Comandos `RAISERROR` y `THROW`
+
+### **2. Uso de Variables de Sistema**
+
+SQL Server proporciona la variable de sistema `@@ERROR`, que almacena el último código de error ocurrido en la sesión.
+
+### **Sintaxis**
+
+```sql
+SELECT 1 / 0; -- Esto generará un error de división por cero
+
+IF @@ERROR <> 0
+BEGIN
+    PRINT 'Se ha producido un error';
+END
+```
+
+### **Ejemplo con Transacciones**
+
+```sql
+BEGIN TRANSACTION;
+SELECT 1 / 0;
+DECLARE @Error INT = @@ERROR;
+
+IF @Error <> 0
+BEGIN
+    ROLLBACK TRANSACTION;
+    PRINT 'Error detectado y transacción revertida';
+    RETURN;
+END
+
+COMMIT TRANSACTION;
+```
+
+### **3. Uso de TRY...CATCH**
+
+El bloque `TRY...CATCH` permite capturar errores de manera más estructurada y ejecutar acciones correctivas o de registro.
+
+### **Sintaxis**
+
+```sql
+BEGIN TRY
+    -- Código susceptible a error
+END TRY
+BEGIN CATCH
+    -- Manejador de errores
+END CATCH
+```
+
+### **Ejemplo con Transacciones**
+
+```sql
+BEGIN TRY
+    BEGIN TRANSACTION;
+    SELECT 1 / 0; -- Error intencional
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    PRINT 'Se detectó un error: ' + ERROR_MESSAGE();
+END CATCH
+```
+
+### **4. Recuperación de Información sobre Errores**
+
+Dentro de un `CATCH`, se pueden utilizar funciones del sistema para obtener información detallada del error:
+
+- `ERROR_MESSAGE()`: Mensaje del error
+- `ERROR_NUMBER()`: Número del error
+- `ERROR_SEVERITY()`: Gravedad del error
+- `ERROR_STATE()`: Estado del error
+- `ERROR_LINE()`: Línea donde ocurrió el error
+- `ERROR_PROCEDURE()`: Procedimiento en el que se generó el error
+
+### **Ejemplo**
+
+```sql
+BEGIN TRY
+    SELECT 1 / 0;
+END TRY
+BEGIN CATCH
+    PRINT 'Error: ' + ERROR_MESSAGE();
+    PRINT 'Número: ' + CAST(ERROR_NUMBER() AS NVARCHAR);
+    PRINT 'Severidad: ' + CAST(ERROR_SEVERITY() AS NVARCHAR);
+    PRINT 'Estado: ' + CAST(ERROR_STATE() AS NVARCHAR);
+    PRINT 'Línea: ' + CAST(ERROR_LINE() AS NVARCHAR);
+END CATCH
+```
+
+### **5. Uso de RAISERROR y THROW**
+
+#### **RAISERROR**
+
+`RAISERROR` permite generar errores personalizados con severidad y estado definidos.
+
+#### **Sintaxis**
+
+```sql
+RAISERROR ('Mensaje de error', 16, 1);
+```
+
+#### **Ejemplo con TRY...CATCH**
+
+```sql
+BEGIN TRY
+    BEGIN TRANSACTION;
+    SELECT 1 / 0;
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    RAISERROR ('Error personalizado: %s', 16, 1, ERROR_MESSAGE());
+END CATCH
+```
+
+#### **THROW**
+
+`THROW` se usa para relanzar el error original en un bloque `CATCH`.
+
+### **Ejemplo**
+
+```sql
+BEGIN TRY
+    BEGIN TRANSACTION;
+    SELECT 1 / 0;
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    THROW;
+END CATCH
+```
+
+### **6. Conclusión**
+
+El manejo de errores en SQL Server es esencial para el desarrollo de bases de datos robustas y confiables. Utilizar `@@ERROR`, `TRY...CATCH`, `RAISERROR` y `THROW` permite detectar, registrar y manejar errores de manera efectiva, asegurando la integridad de los datos y una mejor experiencia para los usuarios.
