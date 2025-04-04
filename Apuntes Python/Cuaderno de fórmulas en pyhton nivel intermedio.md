@@ -1,3 +1,104 @@
+## `Set`  EN  PYTHON
+
+### Introducción
+
+En Python, un **set** (conjunto) es una estructura de datos que almacena elementos **únicos y desordenados**. Los conjuntos son especialmente útiles cuando se necesita eliminar duplicados o realizar operaciones matemáticas como uniones e intersecciones.
+
+### 1. Creación de un Set
+
+### Sintaxis
+
+Los conjuntos se pueden crear de dos maneras:
+
+```python
+mi_set = {1, 2, 3, 4}  # Creación con llaves
+mi_set_vacio = set()   # Creación con la función set()
+```
+
+🚨 **Nota**: `set()` sin argumentos crea un conjunto vacío. `{}` crea un diccionario vacío.
+
+### 2. Características Principales
+
+- **No permite elementos duplicados**:
+    
+    ```python
+    numeros = {1, 2, 2, 3, 4, 4}
+    print(numeros)  # {1, 2, 3, 4}
+    ```
+    
+- **No garantiza orden**:
+    
+    ```python
+    letras = {'b', 'a', 'c'}
+    print(letras)  # {'a', 'c', 'b'} (el orden puede variar)
+    ```
+    
+- **Es mutable, pero sus elementos deben ser inmutables**:
+    
+    ```python
+    mi_set = {1, 2, (3, 4)}  # Correcto
+    # mi_set = {1, 2, [3, 4]}  # Error: las listas no son inmutables
+    ```
+    
+
+### 3. Operaciones con Sets
+
+#### 3.1. Agregar y eliminar elementos
+
+```python
+s = {1, 2, 3}
+s.add(4)  # Agrega un elemento
+s.remove(2)  # Elimina un elemento (error si no existe)
+s.discard(5)  # Elimina sin error si no existe
+s.clear()  # Vacía el conjunto
+```
+
+#### 3.2. Operaciones matemáticas
+
+```python
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+print(A | B)  # Union: {1, 2, 3, 4, 5}
+print(A & B)  # Intersección: {3}
+print(A - B)  # Diferencia: {1, 2}
+print(A ^ B)  # Diferencia simétrica: {1, 2, 4, 5}
+```
+
+#### 3.3. Comprobaciones
+
+```python
+A = {1, 2, 3}
+B = {1, 2}
+
+print(B.issubset(A))  # True (B está contenido en A)
+print(A.issuperset(B))  # True (A contiene a B)
+print(A.isdisjoint({4, 5}))  # True (no hay elementos comunes)
+```
+
+### 4. `frozenset`: Conjuntos Inmutables
+
+Si necesitas un conjunto **inmutable**, usa `frozenset()`:
+
+```python
+fs = frozenset([1, 2, 3])
+# fs.add(4)  # Error: no se puede modificar
+```
+
+
+### 5. `setdefault()` en Diccionarios
+
+Aunque no es un conjunto, este método usa "set" en su nombre y es útil:
+
+```python
+diccionario = {}
+diccionario.setdefault("clave", []).append("valor")
+print(diccionario)  # {'clave': ['valor']}
+```
+### Conclusión
+
+Los conjuntos (`set`) en Python son una herramienta poderosa para manejar datos únicos y realizar operaciones matemáticas de manera eficiente. Además, `frozenset` proporciona una versión inmutable, y `setdefault()` es útil en diccionarios para manejar valores predeterminados.
+
 ## MANEJO DE ARCHIVOS (lectura, escritura)
 
 ### LECTURA:
@@ -458,15 +559,58 @@ Puntos clave:
 3. `else` se ejecuta si no hay excepciones, y `finally` se ejecuta siempre.
 4. Puedes crear y lanzar tus propias excepciones para situaciones específicas.
 
+### RELACION ENTRE `continue` y `break`
 
+#### 1. **`continue`**
 
+- **Propósito:** Se utiliza dentro de los bucles (`for`, `while`) para saltar a la siguiente iteración del bucle, sin ejecutar el resto del código que sigue después de él.
+- **Uso:** Cuando se cumple una condición específica, puedes usar `continue` para evitar ejecutar el resto de las instrucciones en esa iteración y pasar a la siguiente.
+- **Ejemplo:**
+    
+    ```python
+    for i in range(5):
+        if i == 2:
+            continue  # Salta la iteración cuando i es 2
+        print(i)
+    ```
+    
+    **Salida:**
+    
+    ```
+    0
+    1
+    3
+    4
+    ```
+    
 
-- Trabajo con rutas de archivos y directorios
-- Funciones más avanzadas (lambdas, decoradores)
-- Programación orientada a objetos
-- Módulos y paquetes más avanzados
-- Expresiones regulares
-- Trabajo con fechas y tiempo
-- Conexiones a bases de datos
-- Requests y APIs
-- Proyectos más complejos con Tkinter
+#### 2. **`break`**
+
+- **Propósito:** Se utiliza dentro de los bucles para salir completamente del bucle, independientemente de si se han recorrido todas las iteraciones.
+- **Uso:** Cuando se cumple una condición, `break` interrumpe el bucle y el flujo de ejecución continúa después del bucle.
+- **Ejemplo:**
+    
+    ```python
+    for i in range(5):
+        if i == 2:
+            break  # Sale del bucle cuando i es 2
+        print(i)
+    ```
+    
+    **Salida:**
+    
+    ```
+    0
+    1
+    ```
+    
+
+#### 3. **Comparación:**
+
+- **`continue`** salta a la siguiente iteración del bucle, pero el bucle sigue ejecutándose.
+- **`break`** termina por completo el bucle, independientemente de cuántas iteraciones quedaran por ejecutarse.
+
+#### 4. **¿Cuándo usar uno u otro?**
+
+- **`continue`:** Úsalo cuando desees omitir ciertas iteraciones bajo condiciones específicas, pero aún necesitas que el bucle continúe hasta completarse.
+- **`break`:** Úsalo cuando ya no necesitas seguir iterando dentro del bucle, y deseas salir inmediatamente del bucle.

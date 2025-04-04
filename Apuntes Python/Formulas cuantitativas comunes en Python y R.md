@@ -2,7 +2,8 @@
 
 1. **Número par**
    Fórmula matemática:
-   $$n\% 2 = 0$$
+   
+$$n\% 2 = 0$$
 
    ```python 
    # Python
@@ -1330,8 +1331,10 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 8. **Margen de Contribución**
-   Fórmula matemática: $$MC = P - CV$$ `P` es el precio por unidad  
-   `CV` es el costo variable por unidad
+   Fórmula matemática: $$MC = P - CV$$
+
+`P` es el precio por unidad  
+`CV` es el costo variable por unidad
    
    ```python
    # Python
@@ -2443,7 +2446,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 6. **Teorema de Fermat (Pequeño)**
-   Si p es primo y a no es divisible por p, entonces: $$a^(p-1) ≡ 1 (mod p)$$
+Si `p` es primo y `a` no es divisible por `p`, entonces:$$a^(p-1) ≡ 1 (\text{mod p})$$
    ```python
    # Python
    def fermat_pequeno(a, p):
@@ -2592,9 +2595,10 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 10. **Función de Möbius**
-    μ(n) = 1 si n es libre de cuadrados con un número par de factores primos
-    μ(n) = -1 si n es libre de cuadrados con un número impar de factores primos
-    μ(n) = 0 si n tiene un factor cuadrado
+    `μ(n)` = 1 si n es libre de cuadrados con un número par de factores primos
+    `μ(n)` = -1 si n es libre de cuadrados con un número impar de factores primos
+    `μ(n)` = 0 si n tiene un factor cuadrado
+
     ```python
     # Python
     def mobius(n):
@@ -2640,8 +2644,9 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(mobius(30))  # -1
     ```
 
-11. **Función Suma de Divisores**
-    σ(n) = suma de todos los divisores positivos de n
+12. **Función Suma de Divisores**
+    `σ(n)` = suma de todos los divisores positivos de `n`
+
     ```python
     # Python
     def suma_divisores(n):
@@ -2689,7 +2694,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(suma_divisores(12))  # 28
     ```
 
-12. **Orden multiplicativo**
+14. **Orden multiplicativo**
     El menor entero positivo k tal que $$a^k ≡ 1 (\text{mod n})$$
     ```python
     # Python
@@ -2720,8 +2725,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(orden_multiplicativo(2, 7))  # 3
     ```
 
-13. **Función de Carmichael**
-    λ(n) es el menor m tal que a^m ≡ 1 (mod n) para todo a coprimo con n
+15. **Función de Carmichael**
+    `λ(n)` es el menor m tal que $$a^m ≡ 1 (mod n)$$ para todo a coprimo con `n`
     ```python
     # Python
     def carmichael(n):
@@ -2801,10 +2806,10 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(carmichael(12))  # 2
     ```
 
-14. **Residuos cuadráticos (símbolo de Legendre)**
-    (a|p) = 1 si a es residuo cuadrático módulo p
-    (a|p) = -1 si a no es residuo cuadrático módulo p
-    (a|p) = 0 si p divide a a
+16. **Residuos cuadráticos (símbolo de Legendre)**
+    `(a|p)` = 1 si a es residuo cuadrático módulo p
+    `(a|p)` = -1 si a no es residuo cuadrático módulo p
+    `(a|p)` = 0 si p divide a a
     ```python
     # Python
     def legendre(a, p):
@@ -2829,7 +2834,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(legendre(2, 7))  # 1
     ```
 
-15. **Ecuación diofántica lineal**
+17. **Ecuación diofántica lineal**
     Resuelve $$ax + by = c$$
     ```python
     # Python
@@ -2947,7 +2952,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 4. **Tabla de verdad para la implicación**
-   p → q
+   $$p → q$$
    ```python
    # Python
    def implicacion(p, q):
@@ -2967,7 +2972,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 5. **Tabla de verdad para la doble implicación (equivalencia)**
-   p ↔ q
+   $$p ↔ q$$
    ```python
    # Python
    def doble_implicacion(p, q):
@@ -2987,8 +2992,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 6. **Leyes de De Morgan**
-   ¬(p ∧ q) ↔ (¬p ∨ ¬q)
-   ¬(p ∨ q) ↔ (¬p ∧ ¬q)
+ $$  ¬(p ∧ q) ↔ (¬p ∨ ¬q)$$
+   $$¬(p ∨ q) ↔ (¬p ∧ ¬q)$$
    ```python
    # Python
    def de_morgan_1(p, q):
@@ -3017,7 +3022,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 7. **Ley de la doble negación**
-   ¬(¬p) ↔ p
+   $$¬(¬p) ↔ p$$
    ```python
    # Python
    def doble_negacion(p):
@@ -3037,8 +3042,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 8. **Leyes de idempotencia**
-   p ∧ p ↔ p
-   p ∨ p ↔ p
+  $$ p ∧ p ↔ p$$
+   $$p ∨ p ↔ p$$
    ```python
    # Python
    def idempotencia_and(p):
@@ -3067,8 +3072,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 9. **Leyes conmutativas**
-   p ∧ q ↔ q ∧ p
-   p ∨ q ↔ q ∨ p
+   $$p ∧ q ↔ q ∧ p$$
+   $$p ∨ q ↔ q ∨ p$$
    ```python
    # Python
    def conmutativa_and(p, q):
@@ -3097,8 +3102,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
    ```
 
 10. **Leyes asociativas**
-    (p ∧ q) ∧ r ↔ p ∧ (q ∧ r)
-    (p ∨ q) ∨ r ↔ p ∨ (q ∨ r)
+    $$(p ∧ q) ∧ r ↔ p ∧ (q ∧ r)$$
+    $$(p ∨ q) ∨ r ↔ p ∨ (q ∨ r)$$
     ```python
     # Python
     def asociativa_and(p, q, r):
@@ -3127,8 +3132,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     ```
 
 11. **Leyes distributivas**
-    p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r)
-    p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r)
+    $$p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r)$$
+    $$p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r)$$
     ```python
     # Python
     def distributiva_and_or(p, q, r):
@@ -3157,8 +3162,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     ```
 
 12. **Leyes de absorción**
-    p ∧ (p ∨ q) ↔ p
-    p ∨ (p ∧ q) ↔ p
+    $$p ∧ (p ∨ q) ↔ p$$
+    $$p ∨ (p ∧ q) ↔ p$$
     ```python
     # Python
     def absorcion_and(p, q):
@@ -3187,8 +3192,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     ```
 
 13. **Leyes de identidad**
-    p ∧ True ↔ p
-    p ∨ False ↔ p
+    $$p ∧ True ↔ p$$
+    $$p ∨ False ↔ p$$
     ```python
     # Python
     def identidad_and(p):
@@ -3217,8 +3222,8 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     ```
 
 14. **Leyes de complemento**
-    p ∧ ¬p ↔ False
-    p ∨ ¬p ↔ True
+    $$p ∧ ¬p ↔ False$$
+    $$p ∨ ¬p ↔ True$$
     ```python
     # Python
     def complemento_and(p):
@@ -3247,7 +3252,7 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     ```
 
 15. **Modus ponens**
-    Si p → q es verdadero y p es verdadero, entonces q es verdadero
+    Si `p → q` es verdadero y `p` es verdadero, entonces `q` es verdadero
     ```python
     # Python
     def modus_ponens(p, q):
@@ -3268,13 +3273,13 @@ plot(x, y, type = "l", main = "Curva Logarítmica")
     print(modus_ponens(TRUE, FALSE))  # FALSE
     ```
 
-Estas son las 15 fórmulas para la sección de Lógica Matemática. ¿Deseas que continúe con la última sección de Series y Sucesiones?
-Entendido. Continuaré con las 15 fórmulas para la sección de Series y Sucesiones:
-
 ## 10. Series y Sucesiones
 
 1. **Suma de una serie aritmética**
-   S_n = n(a_1 + a_n) / 2, donde a_1 es el primer término, a_n el último término y n el número de términos
+   $$S_n = n(a_1 + a_n) / 2$$ `a_1` es el primer término
+ `a_n` el último término  
+ `n` el número de términos
+ 
    ```python
    # Python
    def suma_serie_aritmetica(a1, an, n):
@@ -3294,7 +3299,10 @@ Entendido. Continuaré con las 15 fórmulas para la sección de Series y Sucesio
    ```
 
 2. **Suma de una serie geométrica**
-   S_n = a(1 - r^n) / (1 - r), donde a es el primer término, r es la razón y n es el número de términos
+   $$S_n = a(1 - r^n) / (1 - r)$$`a` es el primer término 
+`r`es la razón 
+`n` es el número de términos
+
    ```python
    # Python
    def suma_serie_geometrica(a, r, n):
@@ -3610,7 +3618,7 @@ Entendido. Continuaré con las 15 fórmulas para la sección de Series y Sucesio
     ```
 
 15. **Serie de Taylor**
-    f(x) ≈ Σᵏ₌₀ⁿ (f^(k)(a)/k!) * (x-a)^k
+    $$f(x) ≈ Σᵏ₌₀ⁿ (f^(k)(a)/k!) * (x-a)^k$$
     ```python
     # Python
     import math

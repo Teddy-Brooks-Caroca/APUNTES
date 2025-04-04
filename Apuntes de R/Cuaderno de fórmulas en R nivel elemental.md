@@ -1,6 +1,31 @@
 
 ## ESTRUCTURAS DE DATOS EN R
 
+#### CREAR UNA VARIABLE
+```R
+nombre_variable <- valor
+
+nombre_variable = valor
+```
+
+En R, se recomienda usar `<-` en lugar de `=` para asignar valores a variables, ya que es una convención de estilo más común en la comunidad.
+#### EJEMPLOS DE VARIABLES
+```R
+# Asignando números
+x <- 10
+y = 20
+
+# Asignando texto (caracteres deben ir entre comillas)
+nombre <- "Juan"
+
+# Asignando un vector
+numeros <- c(1, 2, 3, 4, 5)
+
+# Asignando un valor lógico (TRUE o FALSE)
+es_mayor <- TRUE
+
+```
+
 #### CREAR UN VECTOR:
 ```R
 vector_nombre <- c(elemento1, elemento2, elemento3, ...)
@@ -141,7 +166,7 @@ print(paste("Salario promedio:", salario_promedio))
 print(paste("Desviación estándar del salario:", desviacion_estandar))
 ```
 
-#### INGRESAR UNA VARIABLE
+#### INGRESAR UNA VARIABLE (Input a usuario)
 
 ```R
 variable <- readline(prompt = "Texto que debe mostrar al usuario: ")
