@@ -1,9 +1,9 @@
 ## 1. Matemáticas Básicas
 
 1. **Número par**
+
    Fórmula matemática:
-   
-$$n\% 2 = 0$$
+   $$n\% 2 = 0$$
 
    ```python 
    # Python
@@ -24,7 +24,7 @@ $$n\% 2 = 0$$
    print(es_par(4))  # TRUE
    ```
 
-2. **Valor absoluto**
+3. **Valor absoluto**
    Fórmula matemática:  $$|x| = { x si x ≥ 0, -x si x < 0 }$$
    
    ```python
@@ -43,7 +43,7 @@ $$n\% 2 = 0$$
    print(abs_value)  # 5
    ```
 
-3. **Redondeo**
+4. **Redondeo**
    Fórmula matemática: $$round(x) = ⌊x + 0.5⌋$$
    
    ```python
@@ -62,7 +62,7 @@ $$n\% 2 = 0$$
    print(rounded)  # 4
    ```
 
-4. **Máximo común divisor**
+5. **Máximo común divisor**
    Fórmula matemática: $$MCD(a,b) = MCD(b, a mod b)$$
    
    ```python
@@ -90,7 +90,7 @@ $$n\% 2 = 0$$
    print(mcd(24, 36))  # 12
    ```
 
-5. **Mínimo común múltiplo**
+6. **Mínimo común múltiplo**
    Fórmula matemática: $$MCM(a,b) = |a * b| / MCD(a,b)$$
    ```python
    # Python
@@ -113,7 +113,7 @@ $$n\% 2 = 0$$
    print(mcm(4, 6))  # 12
    ```
 
-6. **Factorial**
+7. **Factorial**
    Fórmula matemática:$$ n! = n × (n-1) × (n-2) × ... × 2 × 1$$
    ```python
    # Python
@@ -133,7 +133,7 @@ $$n\% 2 = 0$$
    print(fact)  # 120
    ```
 
-7. **Potencia**
+8. **Potencia**
    Fórmula matemática: $$x^n = x × x × ... × x (n veces)$$
    ```python
    # Python
@@ -151,7 +151,7 @@ $$n\% 2 = 0$$
    print(power)  # 8
    ```
 
-8. **Raíz cuadrada**
+9. **Raíz cuadrada**
    Fórmula matemática: $$√x = y$$ donde: $$y² = x$$
    ```python
    # Python
@@ -171,7 +171,7 @@ $$n\% 2 = 0$$
    print(sqrt_value)  # 4
    ```
 
-9. **Logaritmo natural**
+10. **Logaritmo natural**
    Fórmula matemática: $$y = ln(x)$$donde: $$e^y = x$$
    ```python
    # Python
@@ -191,7 +191,7 @@ $$n\% 2 = 0$$
    print(log_value)  # 2.302585
    ```
 
-10. **Logaritmo base 10**
+11. **Logaritmo base 10**
     Fórmula matemática: $$y = log₁₀(x)$$ donde: $$10^y = x$$
     ```python
     # Python
@@ -211,7 +211,7 @@ $$n\% 2 = 0$$
     print(log10_value)  # 2
     ```
 
-11. **Suma de serie aritmética**
+12. **Suma de serie aritmética**
     Fórmula matemática: $$S = n(a₁ + aₙ) / 2$$ 
     `n` es el número de términos 
     `a₁` es el primer término  
@@ -236,7 +236,7 @@ $$n\% 2 = 0$$
     print(suma_aritmetica(1, 100, 100))  # 5050
     ```
 
-12. **Suma de serie geométrica**
+13. **Suma de serie geométrica**
     Fórmula matemática: $$S = a(1 - r^n) / (1 - r)$$ 
     `a` es el primer término
     `r` es la razón  
@@ -266,7 +266,7 @@ $$n\% 2 = 0$$
     print(suma_geometrica(1, 2, 5))  # 31
     ```
 
-13. **Conversión de grados a radianes**
+14. **Conversión de grados a radianes**
     Fórmula matemática: $$rad = (π/180) × grados$$
     ```python
     # Python
@@ -289,7 +289,7 @@ $$n\% 2 = 0$$
     print(grados_a_radianes(180))  # 3.141593
     ```
 
-14. **Conversión de radianes a grados**
+15. **Conversión de radianes a grados**
     Fórmula matemática: $$grados = (180/π) × rad$$
     ```python
     # Python
@@ -312,7 +312,7 @@ $$n\% 2 = 0$$
     print(radianes_a_grados(pi))  # 180
     ```
 
-15. **Distancia entre dos puntos**
+16. **Distancia entre dos puntos**
     Fórmula matemática: $$d = √[(x₂ - x₁)² + (y₂ - y₁)²]$$
     ```python
     # Python
